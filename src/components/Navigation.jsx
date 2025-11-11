@@ -1,8 +1,9 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
 const Navigation = () => {
   const location = useLocation()
+  const navigate = useNavigate()
 
   const navItems = [
     { path: '/', label: 'Home' },
@@ -51,8 +52,8 @@ const Navigation = () => {
           <div className="md:hidden">
             <select
               value={location.pathname}
-              onChange={(e) => window.location.href = e.target.value}
-              className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-slate-300"
+              onChange={(e) => navigate(e.target.value)}
+              className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
             >
               {navItems.map((item) => (
                 <option key={item.path} value={item.path}>
