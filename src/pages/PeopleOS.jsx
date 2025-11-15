@@ -45,7 +45,7 @@ const PeopleOS = () => {
             transition={{ delay: 0.5 }}
             className="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto"
           >
-            Hire fast, train faster. Role scorecards, AI interviews, onboarding blueprints, and continuous micro-learning tied to business outcomes.
+            Deep, real-time intelligence from StartupOS powers predictive hiring. Understands your startup's stage, team DNA, culture, and growth trajectory—then determines exactly who you should hire.
           </motion.p>
         </div>
       </motion.section>
@@ -57,19 +57,23 @@ const PeopleOS = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold mb-6 text-gradient">Talent Operations</h2>
+            <h2 className="text-4xl font-bold mb-6 text-gradient">Predictive Hiring Intelligence</h2>
             <div className="space-y-6">
               <div className="glass-effect rounded-xl p-6">
-                <h3 className="text-xl font-bold mb-3">Role Scorecards</h3>
-                <p className="text-slate-400">Define success metrics for every role</p>
+                <h3 className="text-xl font-bold mb-3">Real-Time StartupOS Intelligence</h3>
+                <p className="text-slate-400">Deep insights into startup stage, team DNA, culture, founder psychology, product maturity, and growth trajectory</p>
               </div>
               <div className="glass-effect rounded-xl p-6">
-                <h3 className="text-xl font-bold mb-3">AI Interviews</h3>
-                <p className="text-slate-400">Intelligent candidate screening and assessment</p>
+                <h3 className="text-xl font-bold mb-3">Six-Dimensional Scoring</h3>
+                <p className="text-slate-400">Scores candidates across stage fit, team fit, culture fit, growth fit, budget fit, and founder fit</p>
               </div>
               <div className="glass-effect rounded-xl p-6">
-                <h3 className="text-xl font-bold mb-3">Onboarding Blueprints</h3>
-                <p className="text-slate-400">Get new hires productive from day one</p>
+                <h3 className="text-xl font-bold mb-3">Context Model Building</h3>
+                <p className="text-slate-400">Builds complete context model of your startup, identifies skill gaps, and generates adaptive job descriptions</p>
+              </div>
+              <div className="glass-effect rounded-xl p-6">
+                <h3 className="text-xl font-bold mb-3">Predictive Success Matching</h3>
+                <p className="text-slate-400">Recommends profiles most likely to thrive in your specific environment, not generic job titles</p>
               </div>
             </div>
           </motion.div>
@@ -80,31 +84,38 @@ const PeopleOS = () => {
             viewport={{ once: true }}
             className="glass-effect rounded-2xl p-8"
           >
-            <h3 className="text-2xl font-bold mb-6">Continuous Learning</h3>
+            <h3 className="text-2xl font-bold mb-6">How It Works</h3>
             <div className="space-y-4">
               <div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-slate-400">Team Learning Score</span>
-                  <span className="text-purple-400 font-bold">87%</span>
-                </div>
-                <div className="h-3 bg-slate-800 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-purple-500 to-violet-500 w-[87%]"></div>
-                </div>
-              </div>
-              <div className="pt-4 border-t border-white/10">
-                <p className="text-slate-300 mb-4">Micro-learning tied to business outcomes</p>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-slate-400">Sales Training</span>
-                    <span className="text-green-400">✓ Complete</span>
+                <p className="text-slate-300 mb-4">PeopleOS uses deep intelligence to understand your company's reality and predict hiring success.</p>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <span className="text-purple-400 text-xl">1</span>
+                    <div>
+                      <span className="text-slate-300 font-semibold">Context Analysis</span>
+                      <p className="text-slate-400 text-sm">Analyzes startup stage, team DNA, culture, and growth trajectory</p>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-slate-400">Product Knowledge</span>
-                    <span className="text-green-400">✓ Complete</span>
+                  <div className="flex items-start gap-3">
+                    <span className="text-purple-400 text-xl">2</span>
+                    <div>
+                      <span className="text-slate-300 font-semibold">Gap Identification</span>
+                      <p className="text-slate-400 text-sm">Identifies skill gaps and role priorities</p>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-slate-400">Leadership Skills</span>
-                    <span className="text-yellow-400">In Progress</span>
+                  <div className="flex items-start gap-3">
+                    <span className="text-purple-400 text-xl">3</span>
+                    <div>
+                      <span className="text-slate-300 font-semibold">Candidate Scoring</span>
+                      <p className="text-slate-400 text-sm">Scores across six dimensions for perfect fit</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-purple-400 text-xl">4</span>
+                    <div>
+                      <span className="text-slate-300 font-semibold">Success Prediction</span>
+                      <p className="text-slate-400 text-sm">Recommends profiles most likely to thrive</p>
+                    </div>
                   </div>
                 </div>
               </div>

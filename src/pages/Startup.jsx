@@ -31,11 +31,12 @@ const startups = [
   },
   {
     path: '/peopleos',
+    url: 'https://people-os-six.vercel.app',
     title: 'PeopleOS',
     tagline: 'The talent engine',
-    description: 'Hire fast, train faster. Role scorecards, AI interviews, onboarding blueprints, and continuous micro-learning tied to business outcomes.',
+    description: 'Predictive hiring powered by StartupOS intelligence. Understands your startup\'s stage, team DNA, and culture—then determines exactly who you should hire. Scores candidates across six dimensions for perfect fit.',
     color: 'from-purple-500 to-violet-500',
-    features: ['Role scorecards', 'AI interviews', 'Onboarding blueprints', 'Micro-learning'],
+    features: ['Real-time StartupOS intelligence', 'Six-dimensional candidate scoring', 'Context model building', 'Predictive success matching'],
   },
   {
     path: '/startupos',

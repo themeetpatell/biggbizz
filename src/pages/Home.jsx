@@ -8,7 +8,7 @@ const brands = [
     url: 'https://www.biggdate.com',
     title: 'Biggdate',
     tagline: 'The spark',
-    description: 'Co-foundership engine. Match by intent, values, and complementary skills. Start building on day one with aligned partners and a shared startup room.',
+    description: 'Co-foundership engine. Match by intent, values, and complementary skills. Start building on day one with aligned partners.',
     color: 'from-pink-500 to-rose-500',
     isExternal: true,
   },
@@ -17,7 +17,7 @@ const brands = [
     url: 'https://www.easyfreezonesetup.com',
     title: 'EasyFreezone',
     tagline: 'The gateway',
-    description: 'UAE launch hub. Incorporate, get your trade license, bank, and compliance pack. From application to activation—fast, guided, and audit-ready.',
+    description: 'UAE launch hub. Incorporate, get your trade license, bank, and compliance pack. From application to activation—fast and guided.',
     color: 'from-blue-500 to-cyan-500',
     isExternal: true,
   },
@@ -32,18 +32,19 @@ const brands = [
   },
   {
     path: '/peopleos',
+    url: 'https://people-os-six.vercel.app',
     title: 'PeopleOS',
     tagline: 'The talent engine',
-    description: 'Hire fast, train faster. Role scorecards, AI interviews, onboarding blueprints, and continuous micro-learning tied to business outcomes.',
+    description: 'Predictive hiring powered by StartupOS intelligence. Understands your startup\'s stage, team DNA, & culture—then determines who to hire.',
     color: 'from-purple-500 to-violet-500',
-    isExternal: false,
+    isExternal: true,
   },
   {
     path: '/startupos',
     url: 'https://www.startupos.in',
     title: 'StartupOS',
     tagline: 'The growth core',
-    description: 'AI Co-Builders + execution systems. Strategy engines, IMPACTS model, growth playbooks, revenue acceleration, customer success, and data intelligence.',
+    description: 'AI Co-Builders + execution systems. Strategy engines, IMPACTS model, growth playbooks, revenue acceleration, and data intelligence.',
     color: 'from-orange-500 to-red-500',
     isExternal: true,
   },
@@ -52,7 +53,7 @@ const brands = [
     url: 'https://www.zerohuman.co',
     title: 'Zerohuman',
     tagline: 'The distribution power',
-    description: 'AI-driven audience growth. Creative generation, multichannel orchestration, and performance insights that compound reach.',
+    description: 'AI-driven audience growth. Creative generation, multichannel orchestration, and performance insights that compound reach over time.',
     color: 'from-indigo-500 to-purple-500',
     isExternal: true,
   },
@@ -60,7 +61,7 @@ const brands = [
     path: '/expandos',
     title: 'ExpandOS',
     tagline: 'The expansion layer',
-    description: 'Capital, M&A, and strategic growth. Fundraising command, cap table, investor network, and acquisition workflows.',
+    description: 'Capital, M&A, and strategic growth. Fundraising command, cap table management, investor network, and acquisition workflows.',
     color: 'from-yellow-500 to-amber-500',
     isExternal: false,
   },
@@ -69,7 +70,7 @@ const brands = [
     url: 'https://mealverse.in',
     title: 'Mealverse',
     tagline: "The team's fuel supply",
-    description: 'Healthy, homemade food at work. Predictive meal planning, nutrition dashboards, and seamless ops for offices.',
+    description: 'Healthy, homemade food at work. Predictive meal planning, nutrition dashboards, and seamless operations for offices and teams.',
     color: 'from-teal-500 to-green-500',
     isExternal: true,
   },
@@ -77,7 +78,7 @@ const brands = [
     path: '/relationos',
     title: 'RelationOS',
     tagline: 'Because builders are human',
-    description: 'AI for real relationships. Dating and marriage support that respects intent, values, and long-term compatibility.',
+    description: 'AI for real relationships. Dating and marriage support that respects intent, values, and long-term compatibility for founders.',
     color: 'from-pink-500 to-purple-500',
     isExternal: false,
   },
@@ -85,7 +86,7 @@ const brands = [
     path: '/healthos',
     title: 'HealthOS',
     tagline: 'Stay in the game',
-    description: 'Preventive health and longevity. Continuous monitoring, early warnings, and personalized protocols for founders and teams.',
+    description: 'Preventive health and longevity. Continuous monitoring, early warnings, and personalized protocols for founders and their teams.',
     color: 'from-red-500 to-pink-500',
     isExternal: false,
   },
@@ -93,7 +94,7 @@ const brands = [
     path: '/lifeos',
     title: 'LifeOS',
     tagline: 'Your legacy vault',
-    description: 'A Swiss-style home for memories, identity, and intangible assets. Preserve, prove, and pass on what matters.',
+    description: 'A Swiss-style home for memories, identity, and intangible assets. Preserve, prove, and pass on what matters most to you.',
     color: 'from-slate-500 to-gray-500',
     isExternal: false,
   },
@@ -101,7 +102,7 @@ const brands = [
     path: '/biggbizz',
     title: 'Biggbizz',
     tagline: 'The connective tissue',
-    description: 'The community that connects it all. Founders, operators, investors, mentors—programs, deals, and peer accountability.',
+    description: 'The community that connects it all. Founders, operators, investors, mentors—programs, deals, and peer accountability networks.',
     color: 'from-purple-500 to-pink-500',
     isExternal: false,
   },
@@ -126,37 +127,43 @@ const testimonials = [
 ]
 
 const TestimonialSlider = ({ testimonials }) => {
-  const cardWidth = 420
+  const [cardWidth, setCardWidth] = useState(420)
+  const [scrollX, setScrollX] = useState(0)
   const gap = 24
-  const scrollSpeed = 0.5
 
   useEffect(() => {
-    const scrollContainer = document.getElementById('testimonial-scroll')
-    if (!scrollContainer) return
-
-    let animationFrameId
-    let scrollPosition = 0
-
-    const scroll = () => {
-      scrollPosition += scrollSpeed
-      const totalWidth = testimonials.length * (cardWidth + gap)
-      
-      if (scrollPosition >= totalWidth) {
-        scrollPosition = 0
-      }
-      
-      scrollContainer.style.transform = `translateX(-${scrollPosition}px)`
-      animationFrameId = requestAnimationFrame(scroll)
-    }
-
-    animationFrameId = requestAnimationFrame(scroll)
-
-    return () => {
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId)
+    const updateCardWidth = () => {
+      if (window.innerWidth < 640) {
+        setCardWidth(300)
+      } else if (window.innerWidth < 768) {
+        setCardWidth(340)
+      } else if (window.innerWidth < 1024) {
+        setCardWidth(380)
+      } else {
+        setCardWidth(420)
       }
     }
-  }, [testimonials.length, cardWidth, gap, scrollSpeed])
+    updateCardWidth()
+    window.addEventListener('resize', updateCardWidth)
+    return () => window.removeEventListener('resize', updateCardWidth)
+  }, [])
+
+  const totalWidth = testimonials.length * (cardWidth + gap)
+  const scrollAmount = cardWidth + gap
+
+  const scrollLeft = () => {
+    setScrollX((prev) => {
+      const newPos = prev - scrollAmount
+      return newPos <= 0 ? totalWidth - scrollAmount : newPos
+    })
+  }
+
+  const scrollRight = () => {
+    setScrollX((prev) => {
+      const newPos = prev + scrollAmount
+      return newPos >= totalWidth ? 0 : newPos
+    })
+  }
 
   const gradientColors = [
     'from-pink-500 to-rose-500',
@@ -172,13 +179,40 @@ const TestimonialSlider = ({ testimonials }) => {
 
   return (
     <div className="relative h-[400px] sm:h-[450px] md:h-[500px] overflow-hidden">
-      <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 md:w-32 bg-gradient-to-r from-purple-950/20 sm:from-purple-950/30 md:from-purple-950/50 via-purple-950/10 sm:via-purple-950/15 md:via-purple-950/20 to-transparent z-20 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 md:w-32 bg-gradient-to-l from-purple-950/20 sm:from-purple-950/30 md:from-purple-950/50 via-purple-950/10 sm:via-purple-950/15 md:via-purple-950/20 to-transparent z-20 pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 md:w-24 bg-gradient-to-r from-purple-950/10 sm:from-purple-950/15 md:from-purple-950/30 via-purple-950/5 sm:via-purple-950/8 md:via-purple-950/15 to-transparent z-20 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 md:w-24 bg-gradient-to-l from-purple-950/10 sm:from-purple-950/15 md:from-purple-950/30 via-purple-950/5 sm:via-purple-950/8 md:via-purple-950/15 to-transparent z-20 pointer-events-none" />
+      
+      {/* Navigation Arrows */}
+      <button
+        onClick={scrollLeft}
+        className="absolute left-4 sm:left-6 md:left-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full glass-effect border-2 border-white/20 hover:border-white/40 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/30"
+        aria-label="Scroll left"
+      >
+        <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        onClick={scrollRight}
+        className="absolute right-4 sm:right-6 md:right-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full glass-effect border-2 border-white/20 hover:border-white/40 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/30"
+        aria-label="Scroll right"
+      >
+        <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
       
       <div className="relative h-full overflow-hidden">
-        <div
-          id="testimonial-scroll"
+            <motion.div
           className="flex gap-4 sm:gap-6 px-4 sm:px-8 md:px-16 h-full items-center"
+          animate={{
+            x: -scrollX,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 30,
+          }}
           style={{ width: 'max-content' }}
         >
           {duplicatedTestimonials.map((testimonial, index) => {
@@ -224,15 +258,16 @@ const TestimonialSlider = ({ testimonials }) => {
             </motion.div>
             )
           })}
-                  </div>
+            </motion.div>
       </div>
     </div>
   )
 }
 
 const AutoSlider = ({ brands }) => {
-  const [isPaused, setIsPaused] = useState(false)
   const [cardWidth, setCardWidth] = useState(450)
+  const [scrollX, setScrollX] = useState(0)
+  const sliderRef = useRef(null)
   const gap = 24
 
   useEffect(() => {
@@ -256,37 +291,68 @@ const AutoSlider = ({ brands }) => {
   // Duplicate brands array for seamless infinite scroll
   const duplicatedBrands = [...brands, ...brands, ...brands]
   const totalWidth = brands.length * (cardWidth + gap)
+  const scrollAmount = cardWidth + gap
+
+  const scrollLeft = () => {
+    setScrollX((prev) => {
+      const newX = prev - scrollAmount
+      return newX <= -totalWidth ? 0 : newX
+    })
+  }
+
+  const scrollRight = () => {
+    setScrollX((prev) => {
+      const newX = prev + scrollAmount
+      return newX >= totalWidth ? 0 : newX
+    })
+  }
 
   return (
     <div 
       className="relative w-screen h-[500px] sm:h-[550px] md:h-[600px] lg:h-[650px] overflow-hidden"
       style={{ marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)' }}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
     >
       {/* Animated Background Gradients */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-950/50 via-slate-950 to-pink-950/50" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(168,85,247,0.15),transparent_70%)]" />
       
       {/* Left Gradient Fade */}
-      <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 lg:w-48 bg-gradient-to-r from-purple-950/40 sm:from-purple-950/60 md:from-purple-950 via-purple-950/40 sm:via-purple-950/60 md:via-purple-950/80 to-transparent z-20 pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-16 md:w-24 lg:w-32 bg-gradient-to-r from-purple-950/20 sm:from-purple-950/30 md:from-purple-950/50 via-purple-950/15 sm:via-purple-950/25 md:via-purple-950/40 to-transparent z-20 pointer-events-none" />
       
       {/* Right Gradient Fade */}
-      <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 lg:w-48 bg-gradient-to-l from-purple-950/40 sm:from-purple-950/60 md:from-purple-950 via-purple-950/40 sm:via-purple-950/60 md:via-purple-950/80 to-transparent z-20 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-16 md:w-24 lg:w-32 bg-gradient-to-l from-purple-950/20 sm:from-purple-950/30 md:from-purple-950/50 via-purple-950/15 sm:via-purple-950/25 md:via-purple-950/40 to-transparent z-20 pointer-events-none" />
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={scrollLeft}
+        className="absolute left-4 sm:left-6 md:left-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full glass-effect border-2 border-white/20 hover:border-white/40 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/30"
+        aria-label="Scroll left"
+      >
+        <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        onClick={scrollRight}
+        className="absolute right-4 sm:right-6 md:right-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full glass-effect border-2 border-white/20 hover:border-white/40 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/30"
+        aria-label="Scroll right"
+      >
+        <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
 
       <div className="relative h-full flex items-center overflow-hidden py-8">
       <motion.div
+          ref={sliderRef}
           className="flex gap-6 h-full items-center"
           animate={{
-            x: isPaused ? undefined : [0, -totalWidth],
+            x: scrollX,
           }}
           transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: brands.length * 12,
-              ease: "linear",
-            },
+            type: "spring",
+            stiffness: 300,
+            damping: 30,
           }}
           style={{ width: 'max-content' }}
         >
@@ -335,7 +401,7 @@ const AutoSlider = ({ brands }) => {
                           {brand.tagline}
                   </p>
                   
-                        <p className="text-sm md:text-base text-slate-300 leading-relaxed mb-5 flex-1 font-light">
+                        <p className="text-sm md:text-base text-slate-300 leading-relaxed mb-5 flex-1 font-light min-h-[72px] md:min-h-[80px]">
                           {brand.description}
                   </p>
                   
@@ -379,7 +445,7 @@ const AutoSlider = ({ brands }) => {
                           {brand.tagline}
                         </p>
                         
-                        <p className="text-sm md:text-base text-slate-300 leading-relaxed mb-5 flex-1 font-light">
+                        <p className="text-sm md:text-base text-slate-300 leading-relaxed mb-5 flex-1 font-light min-h-[72px] md:min-h-[80px]">
                           {brand.description}
                         </p>
                         
